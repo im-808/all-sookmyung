@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안녕하세요 눈송이님!</title>
+    <!-- 폰트 및 아이콘 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 은은한 파스텔 파란색 그라데이션 */
+            --bg-gradient: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            /* 카드 배경: 반투명 화이트 */
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            /* 포인트 컬러: 신뢰감을 주는 블루 */
+            --accent-color: #5c92ff;
+            --text-main: #2c3e50;
+            --text-sub: #546e7a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px;
+        }
+
+        /* 헤더 인사말 */
+        header { text-align: center; margin-bottom: 50px; }
+        #greeting { 
+            font-size: 2.5rem; 
+            font-weight: 600; 
+            color: #3e5a82;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* 검색바 */
+        .search-container {
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 60px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 18px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .search-bar:focus { 
+            background: white;
+            border-color: var(--accent-color); 
+            box-shadow: 0 15px 30px rgba(92, 146, 255, 0.2); 
+        }
+
+        /* 대시보드 그리드 */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* 카드 디자인 */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.03);
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        .card h2 { 
+            font-size: 1.2rem; 
+            margin-bottom: 22px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            color: var(--accent-color);
+        }
+
+        /* 링크 리스트 */
+        .link-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1rem;
+            padding: 12px 15px;
+            border-radius: 15px;
+            transition: 0.2s;
+            background: rgba(255,255,255,0.3);
+        }
+        .link-item:hover { 
+            background: white; 
+            color: var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding-left: 20px;
+        }
+        .link-item i { width: 24px; text-align: center; font-size: 1.2rem; }
+
+        /* 투두 리스트 */
+        .todo-input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .todo-input {
+            flex: 1;
+            background: rgba(255,255,255,0.8);
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            border-radius: 12px;
+            outline: none;
+            color: var(--text-main);
+        }
+        .todo-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+        .delete-btn { color: #ffab91; cursor: pointer; border: none; background: none; }
+
+        @media (max-width: 768px) {
+            #greeting { font-size: 2rem; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="greeting">안녕하세요 눈송이님!</div>
+    </header>
+
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" class="search-bar" placeholder="오늘은 어떤 일을 도와드릴까요?" autocomplete="off">
+        </form>
+    </div>
+
+    <main class="dashboard-grid">
+        <!-- 1. 데일리 에센셜 (스노우보드, 스노로즈, 피그마, 노션, Gmail) -->
+        <section class="card">
+            <h2><i class="fas fa-star"></i> 데일리 에센셜</h2>
+            <div class="link-grid">
+                <a href="https://snowboard.sookmyung.ac.kr/login/index.php" class="link-item" target="_blank"><i class="fas fa-university"></i> 스노우보드</a>
+                <a href="https://www.snorose.com/" class="link-item" target="_blank"><i class="fas fa-seedling"></i> 스노로즈</a>
+                <a href="https://www.figma.com/" class="link-item" target="_blank"><i class="fab fa-figma"></i> 피그마</a>
+                <a href="https://www.notion.so" class="link-item" target="_blank"><i class="fas fa-sticky-note"></i> 노션 (Notion)</a>
+                <a href="https://mail.google.com" class="link-item" target="_blank"><i class="fas fa-envelope"></i> Gmail</a>
+            </div>
+        </section>
+
+        <!-- 2. 연구 및 커리어 -->
+        <section class="card">
+            <h2><i class="fas fa-graduation-cap"></i> 연구 및 커리어</h2>
+            <div class="link-grid">
+                <a href="https://scholar.google.com" class="link-item" target="_blank"><i class="fas fa-book"></i> 구글 학술검색</a>
+                <a href="https://arxiv.org" class="link-item" target="_blank"><i class="fas fa-flask"></i> arXiv</a>
+                <a href="https://chat.openai.com" class="link-item" target="_blank"><i class="fas fa-robot"></i> ChatGPT</a>
+                <a href="https://github.com" class="link-item" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </section>
+
+        <!-- 3. 엔터테인먼트 -->
+        <section class="card">
+            <h2><i class="fas fa-ice-cream"></i> 라이프 & 쇼핑</h2>
+            <div class="link-grid">
+                <a href="https://youtube.com" class="link-item" target="_blank"><i class="fab fa-youtube"></i> 유튜브</a>
+                <a href="https://netflix.com" class="link-item" target="_blank"><i class="fas fa-play-circle"></i> 넷플릭스</a>
+                <a href="https://coupang.com" class="link-item" target="_blank"><i class="fas fa-shopping-bag"></i> 쿠팡</a>
+                <a href="https://musinsa.com" class="link-item" target="_blank"><i class="fas fa-tshirt"></i> 무신사</a>
+            </div>
+        </section>
+
+        <!-- 4. 할 일 목록 -->
+        <section class="card">
+            <h2><i class="fas fa-check-circle"></i> 오늘 할 일</h2>
+            <div class="todo-container">
+                <div class="todo-input-group">
+                    <input type="text" id="todoInput" class="todo-input" placeholder="계획을 입력하세요...">
+                    <button onclick="addTodo()" style="background: var(--accent-color); border:none; padding: 8px 15px; border-radius: 10px; color:white; cursor:pointer;">추가</button>
+                </div>
+                <ul id="todoList" class="todo-list"></ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const todoInput = document.getElementById('todoInput');
+        const todoList = document.getElementById('todoList');
+
+        function loadTodos() {
+            const saved = JSON.parse(localStorage.getItem('mySnowTodos') || '[]');
+            todoList.innerHTML = '';
+            saved.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${todo}</span>
+                    <button class="delete-btn" onclick="removeTodo(${index})"><i class="fas fa-trash-alt"></i></button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+
+        function addTodo() {
+            if (!todoInput.value.trim()) return;
+            const saved = JSON.parse(localStorage.getItem('mySnowTodos') || '[]');
+            saved.push(todoInput.value);
+            localStorage.setItem('mySnowTodos', JSON.stringify(saved));
+            todoInput.value = '';
+            loadTodos();
+        }
+
+        function removeTodo(index) {
+            const saved = JSON.parse(localStorage.getItem('mySnowTodos') || '[]');
+            saved.splice(index, 1);
+            localStorage.setItem('mySnowTodos', JSON.stringify(saved));
+            loadTodos();
+        }
+
+        todoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTodo();
+        });
+
+        loadTodos();
+    </script>
+</body>
+</html>
